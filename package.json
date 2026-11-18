@@ -1,0 +1,86 @@
+{
+  "name": "better-autosuggestion",
+  "displayName": "Better Autosuggestion for Antigravity",
+  "description": "Fixes Antigravity IDE autocomplete ghost text positioning (CRLF offset drift, mid-line insertions, and native ghost text coalescing) using 100% built-in Antigravity AI.",
+  "version": "1.0.0",
+  "publisher": "zafarsyah",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zafarsyah/better-autosuggestion"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./src/extension.js",
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "better-autosuggestion.status",
+        "title": "Better Autosuggestion: Show Status & Diagnostics",
+        "category": "Better Autosuggestion"
+      },
+      {
+        "command": "better-autosuggestion.applyPatch",
+        "title": "Better Autosuggestion: Apply Core Patch to Antigravity",
+        "category": "Better Autosuggestion"
+      },
+      {
+        "command": "better-autosuggestion.restorePatch",
+        "title": "Better Autosuggestion: Restore Original Antigravity Extension",
+        "category": "Better Autosuggestion"
+      },
+      {
+        "command": "better-autosuggestion.toggle",
+        "title": "Better Autosuggestion: Toggle Enable/Disable",
+        "category": "Better Autosuggestion"
+      }
+    ],
+    "configuration": {
+      "title": "Better Autosuggestion",
+      "properties": {
+        "betterAutosuggestion.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Better Autosuggestion runtime wrapper and ghost text position fixes."
+        },
+        "betterAutosuggestion.fixCrlfDrift": {
+          "type": "boolean",
+          "default": true,
+          "description": "Normalize CRLF (\\r\\n) and LF (\\n) offsets between the editor document and Antigravity's characterDiff stream."
+        },
+        "betterAutosuggestion.preferNativeGhostText": {
+          "type": "boolean",
+          "default": true,
+          "description": "Coalesce cursor-line edits into native VS Code InlineCompletionItem ghost text instead of custom green-highlighted inline edits."
+        },
+        "betterAutosuggestion.allowMidLineMultiline": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow multiline completions when the cursor is before closing brackets/braces on the same line."
+        },
+        "betterAutosuggestion.autoPatchCoreExtension": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically apply and maintain the core patch on Antigravity's built-in agy extension (survives IDE updates)."
+        },
+        "betterAutosuggestion.debugLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Log detailed before/after diff and ghost text position diagnostics to the Better Autosuggestion output channel."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test test/diffNormalizer.test.js"
+  }
+}
+

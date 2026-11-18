@@ -1,0 +1,7 @@
+.vscode/**
+.git/**
+test/**
+PRD.md
+index.js
+*.vsix
+
